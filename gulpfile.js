@@ -7,8 +7,16 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 
 gulp.task('compile:html', function() {
-  gulp.src('./src/**/*.jade')
+  gulp.src('./src/*.jade')
     .pipe(jade())
+    .pipe(gulp.dest('./build/'))
+});
+
+gulp.task('compile:temaplates', function() {
+  gulp.src('./src/templates/**/*.jade')
+    .pipe(jade({
+      client: true
+    }))
     .pipe(gulp.dest('./build/'))
 });
 
@@ -38,10 +46,11 @@ gulp.task('concat:vendor', function() {
     .pipe(gulp.dest('./build/scripts/'))
 });
 
-gulp.task('build', ['compile:html', 'compile:css', 'compile:javascript', 'concat:vendor']);
+gulp.task('build', ['compile:html', 'compile:css', 'compile:templates', 'compile:javascript', 'concat:vendor']);
 
 gulp.task('default', ['build'], function(){
-  gulp.watch('./src/**/*.jade', ['compile:html']);
+  gulp.watch('./src/*.jade', ['compile:html']);
+  gulp.watch('./src/templates/**/*.jade', ['compile:templates']);
   gulp.watch('./src/stylus/**/*.styl', ['compile:css']);
   gulp.watch('./src/app/**/*.js', ['browserify']);
   gulp.watch('./src/vendor/scripts/**/*.js', ['concat:vendor']);
