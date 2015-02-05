@@ -7,3 +7,7 @@ module.exports = Backbone.Model.extend do
   toggle-done-state: ->
     already-done = @get \done
     @set done: if already-done then no else yes
+
+  edit: (new-description) ->
+    old-description = @get \description
+    @set description: new-description if new-crescption is not old-description
