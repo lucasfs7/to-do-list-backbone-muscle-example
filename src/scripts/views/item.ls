@@ -10,6 +10,7 @@ module.exports = Muscle.ModelView.extend do
   events:
     'change .check': 'done'
     'blur .description': 'edit'
+    'click .remove': 'remove'
 
   done: (e) ->
     @model.toggle-done-state!
@@ -18,4 +19,12 @@ module.exports = Muscle.ModelView.extend do
     new-description = $ e.target .text!
     if new-description is not ''
       @model.edit new-description
+
+  remove: (e) ->
+    e?.prevent-default?!
+    if @model.collection
+      @model.collection.remove [@model]
+    else
+      @model.destroy!
+    @$el.remove!
 
