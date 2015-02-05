@@ -8,18 +8,14 @@ module.exports = Muscle.ModelView.extend do
   template: -> require '../templates/item'
 
   events:
-    'change input[type="checkbox"]': 'done'
-    'click span': 'enabledEdit'
-    'blur': 'edit'
+    'change .check': 'done'
+    'blur .description': 'edit'
 
   done: (e) ->
     @model.toggle-done-state!
 
-  enable-edit: (e) ->
-    @$el.attr \contenteditable, yes
-
   edit: (e) ->
-    new-description = $ e.target .find 'span' .inner-text!
+    new-description = $ e.target .text!
     if new-description is not ''
-      @model.edit new-drecription
+      @model.edit new-description
 

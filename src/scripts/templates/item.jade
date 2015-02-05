@@ -1,2 +1,2 @@
-input(type="checkbox", checked=done)
-span(class=done ? 'done' : '') #{description}
+input.check(type="checkbox", checked=done)
+span.description(class=[done ? 'done' : ''], contenteditable="true") #{description}

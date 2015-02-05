@@ -10,4 +10,4 @@ module.exports = Backbone.Model.extend do
 
   edit: (new-description) ->
     old-description = @get \description
-    @set description: new-description if new-crescption is not old-description
+    @set description: new-description if new-description is not old-description
