@@ -15,7 +15,7 @@ module.exports = Muscle.View.extend do
   DOMControl: ->
     @list = new list-view collection: new Todos
     @list.app = @app
-    @$el.append @list.el
+    @$el.find '.create-todo' .after @list.el
     @list.render!
 
   add: (e) ->
