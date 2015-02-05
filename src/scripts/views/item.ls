@@ -7,3 +7,9 @@ module.exports = Muscle.ModelView.extend do
   tag-name: 'li'
   template: -> require '../templates/item'
 
+  events:
+    'change input[type="checkbox"]': 'done'
+
+  done: (e) ->
+    @model.toggle-done-state!
+

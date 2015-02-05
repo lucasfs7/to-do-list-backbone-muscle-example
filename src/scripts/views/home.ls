@@ -15,7 +15,6 @@ module.exports = Muscle.View.extend do
   DOMControl: ->
     @list = new list-view collection: new Todos
     @list.app = @app
-    console.log @$el
     @$el.append @list.el
     @list.render!
 
